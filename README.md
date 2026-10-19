@@ -2,6 +2,8 @@
 
 An end-to-end AI-powered Research & Expertise Navigator built for the **Bern Economic Development Agency** challenge at HackApertus Liebefeld.
 
+[Preview](https://drive.proton.me/urls/69YMSV6XFC#WBJ0umEG7yvl)
+
 ## 🎯 Challenge Goal
 Transform fragmented public web landscapes across research institutions into a unified, semantically searchable knowledge resource with 100% source traceability and zero hallucinations.
 
@@ -25,3 +27,43 @@ Transform fragmented public web landscapes across research institutions into a u
    python -m venv .venv
    source .venv/bin/activate  # On Windows: .venv\Scripts\Activate.ps1
    pip install -r requirements.txt
+   ```
+
+2. **Scrape Sources (UniBE, ARTORG, DCB)**:
+   ```bash
+   python scraper.py
+   ```
+
+3. **Populate Vector Database**:
+   ```bash
+   python database.py
+   ```
+
+4. **Launch Web Navigator**:
+   ```bash
+   python main.py
+   ```
+   *Open `http://localhost:8000` in your browser.*
+
+## 🐳 Running with Docker
+
+1. **Build and Start Container**:
+   ```bash
+   docker compose up --build
+   ```
+   *Access the application at `http://localhost:8000`.*
+
+## 📌 Extending to New Institutions
+Add a new institutional seed entry inside `load_sources()` in `scraper.py`:
+
+```python
+{
+    "institution_id": "new_center",
+    "institution_name": "New Research Center Name",
+    "seed_urls": ["https://example-center.unibe.ch/research"]
+}
+```
+Re-run `python scraper.py` and `python database.py`. No core architecture or search code modification required.
+
+## 📄 License
+Apache-2.0 / Open Commons.
