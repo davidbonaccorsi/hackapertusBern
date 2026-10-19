@@ -62,7 +62,12 @@ def load_sources():
             "institution_id": "dcberne",
             "institution_name": "Diabetes Center Berne",
             "seed_urls": ["https://www.dcberne.com/en/research", "https://www.dcberne.com/en/about-us/team"]
-        }
+        },
+        {
+    "institution_id": "new_center",
+    "institution_name": "New Research Center Name",
+    "seed_urls": ["[https://example-center.unibe.ch/research](https://example-center.unibe.ch/research)"]
+}
     ]
     sources.extend(extra_sources)
     return sources

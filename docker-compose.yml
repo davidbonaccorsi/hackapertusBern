@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  research-navigator:
+    build: .
+    container_name: research_navigator
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./research_navigator_db:/app/research_navigator_db
+      - ./scraped_data.json:/app/scraped_data.json
+    environment:
+      - OPENAI_API_KEY=keera_sk_CADaymc6ZVcjrMfTwAXdEZReX6LFLK2r5sDVJKRI8Fk
+      - OPENAI_BASE_URL=https://gateway.keera.ch/api/v1/
+    restart: unless-stopped
