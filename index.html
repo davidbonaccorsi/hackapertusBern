@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research & Expertise Navigator | Bern</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .swiss-red { color: #D52B1E; }
+        .bg-swiss-red { background-color: #D52B1E; }
+        
+        /* Advanced glowing animations */
+        .glow-bg {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(213, 43, 30, 0.15) 0%, rgba(15, 23, 42, 0) 70%);
+            top: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -15px rgba(0,0,0,0.05), 0 0 20px rgba(213, 43, 30, 0.05);
+            border-color: rgba(213, 43, 30, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 min-h-screen flex flex-col antialiased">
+
+    <!-- Premium Dark Hero Section -->
+    <div class="relative bg-slate-950 overflow-hidden pb-32">
+        <div class="glow-bg"></div>
+        
+        <!-- Header Navigation -->
+        <header class="relative z-10 border-b border-white/10">
+            <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <div class="bg-swiss-red text-white font-bold px-3 py-1 rounded text-sm tracking-widest uppercase">Bern</div>
+                    <div class="text-white/90 font-semibold tracking-tight">Economic Development</div>
+                </div>
+                <div class="hidden md:flex items-center gap-2 text-xs glass-panel px-4 py-2 rounded-full">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span class="text-slate-300 font-medium tracking-wide">Apertus 70B Sovereign Instance</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Hero Content & Search -->
+        <div class="relative z-10 max-w-4xl mx-auto px-6 pt-20 pb-16 text-center">
+            <h1 class="text-5xl md:text-7xl font-extrabold text-white tracking-tight mb-6 leading-tight">
+                Discover Bern's <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-red-400 to-orange-400">
+                    Innovation Engine.
+                </span>
+            </h1>
+            <p class="text-lg md:text-xl text-slate-400 mb-10 max-w-2xl mx-auto font-light">
+                Uncover hidden expertise across UniBE, ARTORG, and the Diabetes Center. Describe what you're looking for, and our AI will translate it into academic reality.
+            </p>
+
+            <!-- Sexy Floating Search Bar -->
+            <form id="searchForm" class="relative group max-w-3xl mx-auto">
+                <div class="absolute -inset-1 bg-gradient-to-r from-red-600 to-orange-600 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+                <div class="relative flex items-center glass-panel rounded-full p-2">
+                    <div class="pl-4 pr-2 text-slate-400">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    </div>
+                    <input type="text" id="queryInput" required
+                        placeholder="Try 'glucose sensors' or 'cancer immunotherapy'..."
+                        class="w-full bg-transparent text-white placeholder-slate-400 px-2 py-3 outline-none text-lg font-medium">
+                    <button type="submit" id="searchBtn"
+                        class="bg-white hover:bg-slate-100 text-slate-900 font-bold px-8 py-3 rounded-full transition-transform hover:scale-105 active:scale-95 flex items-center gap-2">
+                        <span>Synthesize</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    </button>
+                </div>
+            </form>
+
+            <!-- Quick Prompts -->
+            <div class="mt-8 flex flex-wrap justify-center gap-3 text-sm">
+                <button onclick="setQuery('glucose sensors')" class="glass-panel text-slate-300 hover:text-white px-4 py-2 rounded-full transition hover:bg-white/10">✨ Glucose Sensors</button>
+                <button onclick="setQuery('insulin pump')" class="glass-panel text-slate-300 hover:text-white px-4 py-2 rounded-full transition hover:bg-white/10">✨ Insulin Pump</button>
+                <button onclick="setQuery('medical microfluidics')" class="glass-panel text-slate-300 hover:text-white px-4 py-2 rounded-full transition hover:bg-white/10">✨ Microfluidics</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Results Area (Overlapping the Hero) -->
+    <main class="max-w-7xl mx-auto px-4 -mt-24 relative z-20 flex-grow w-full mb-20">
+        
+        <!-- Semantic Expansion & AI Summary (The "Neural Bridge") -->
+        <div id="aiIntelligencePanel" class="hidden mb-10 flex flex-col gap-4">
+            
+            <!-- Semantic Bridge -->
+            <div id="expansionPanel" class="hidden bg-white/80 backdrop-blur-xl border border-white rounded-3xl p-6 shadow-xl">
+                <div class="flex items-start gap-4">
+                    <div class="bg-red-50 p-3 rounded-2xl text-swiss-red">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="bg-gradient-to-r from-red-600 to-red-400 bg-clip-text text-transparent font-bold text-xs uppercase tracking-widest">Semantic Translation Bridge Active</span>
+                        </div>
+                        <p class="text-sm text-slate-600">
+                            Your search for <strong id="origQuery" class="text-slate-900 border-b border-red-300"></strong> was automatically expanded by Apertus 70B to match exact institutional terminology:
+                        </p>
+                        <div id="expandedTermsList" class="flex flex-wrap gap-2 mt-3"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Executive Summary -->
+            <div id="executiveSummary" class="hidden bg-slate-900 text-white rounded-3xl p-6 shadow-xl border border-slate-800 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]">
+                <div class="flex items-center gap-2 mb-2">
+                    <div class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
+                    <h2 class="text-[11px] font-bold text-slate-400 uppercase tracking-widest">Executive Ecosystem Synthesis</h2>
+                </div>
+                <p id="summaryText" class="text-base text-slate-200 leading-relaxed font-medium"></p>
+            </div>
+        </div>
+
+        <!-- Ecosystem Filter Tabs -->
+        <div id="resultsHeader" class="hidden flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+            <h2 class="text-2xl font-bold text-slate-900 tracking-tight" id="resultsCount">Verified Experts</h2>
+            <div class="flex p-1.5 bg-slate-200/60 backdrop-blur rounded-2xl">
+                <button onclick="filterSource('all')" id="btn-all" class="px-5 py-2 rounded-xl bg-white shadow-sm text-slate-900 font-bold text-sm transition">All Sources</button>
+                <button onclick="filterSource('unibe')" id="btn-unibe" class="px-5 py-2 rounded-xl text-slate-600 hover:text-slate-900 font-medium text-sm transition">UniBE</button>
+                <button onclick="filterSource('artorg')" id="btn-artorg" class="px-5 py-2 rounded-xl text-slate-600 hover:text-slate-900 font-medium text-sm transition">ARTORG</button>
+                <button onclick="filterSource('dcb')" id="btn-dcb" class="px-5 py-2 rounded-xl text-slate-600 hover:text-slate-900 font-medium text-sm transition">Diabetes Center</button>
+            </div>
+        </div>
+
+        <!-- Sleek Loading State -->
+        <div id="loadingState" class="hidden py-24 text-center">
+            <div class="relative inline-flex">
+                <div class="w-16 h-16 bg-red-100 rounded-full animate-ping absolute"></div>
+                <div class="w-16 h-16 bg-white border-4 border-swiss-red rounded-full relative flex items-center justify-center">
+                    <svg class="w-6 h-6 text-swiss-red animate-spin" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                </div>
+            </div>
+            <p class="mt-6 text-sm text-slate-500 font-medium tracking-wide">Synthesizing institutional knowledge...</p>
+        </div>
+
+        <!-- Results Grid -->
+        <div id="resultsGrid" class="grid grid-cols-1 lg:grid-cols-2 gap-6"></div>
+
+    </main>
+
+    <!-- JS Logic -->
+    <script>
+        let globalResults = [];
+
+        function setQuery(text) {
+            document.getElementById('queryInput').value = text;
+            executeSearch(text);
+        }
+
+        document.getElementById('searchForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const query = document.getElementById('queryInput').value.trim();
+            if (query) executeSearch(query);
+        });
+
+        async function executeSearch(query) {
+            document.getElementById('loadingState').classList.remove('hidden');
+            document.getElementById('resultsGrid').innerHTML = '';
+            document.getElementById('aiIntelligencePanel').classList.add('hidden');
+            document.getElementById('expansionPanel').classList.add('hidden');
+            document.getElementById('executiveSummary').classList.add('hidden');
+            document.getElementById('resultsHeader').classList.add('hidden');
+
+            try {
+                const response = await fetch('/search', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ query: query })
+                });
+
+                const data = await response.json();
+                document.getElementById('loadingState').classList.add('hidden');
+
+                if (data.expanded_terms && data.expanded_terms.length > 0) {
+                    document.getElementById('origQuery').textContent = data.query;
+                    const termsContainer = document.getElementById('expandedTermsList');
+                    termsContainer.innerHTML = data.expanded_terms.map(t => 
+                        `<span class="bg-slate-100 text-slate-700 text-xs px-3 py-1.5 rounded-full font-medium border border-slate-200">✨ ${escapeHtml(t)}</span>`
+                    ).join('');
+                    document.getElementById('expansionPanel').classList.remove('hidden');
+                    document.getElementById('aiIntelligencePanel').classList.remove('hidden');
+                }
+
+                globalResults = data.results || [];
+                
+                if (globalResults.length > 0) {
+                    const units = [...new Set(globalResults.map(r => r.unit))].slice(0, 3).join(', ');
+                    document.getElementById('summaryText').textContent = 
+                        `The Bern knowledge ecosystem currently holds ${globalResults.length} verifiable expert profiles highly relevant to "${query}". Critical competencies are distributed across ${units}.`;
+                    document.getElementById('executiveSummary').classList.remove('hidden');
+                    document.getElementById('aiIntelligencePanel').classList.remove('hidden');
+                }
+
+                document.getElementById('resultsCount').textContent = `Verified Matches (${globalResults.length})`;
+                document.getElementById('resultsHeader').classList.remove('hidden');
+
+                renderCards(globalResults);
+                
+                // Smooth scroll to results
+                document.getElementById('aiIntelligencePanel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+            } catch (err) {
+                document.getElementById('loadingState').classList.add('hidden');
+                alert('Error connecting to the Apertus backend.');
+            }
+        }
+
+        function renderCards(items) {
+            const grid = document.getElementById('resultsGrid');
+            grid.innerHTML = '';
+
+            items.forEach(item => {
+                const isDCB = item.source_url.includes('dcberne');
+                const isARTORG = item.source_url.includes('artorg');
+                
+                let sourceBadge = '';
+                if(isDCB) {
+                    sourceBadge = `<span class="bg-amber-100 text-amber-800 border-amber-200 border text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wide">Diabetes Center</span>`;
+                } else if(isARTORG) {
+                    sourceBadge = `<span class="bg-blue-100 text-blue-800 border-blue-200 border text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wide">ARTORG Center</span>`;
+                } else {
+                    sourceBadge = `<span class="bg-slate-100 text-slate-800 border-slate-200 border text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wide">UniBE Medicine</span>`;
+                }
+
+                const card = document.createElement('div');
+                card.className = "bg-white rounded-3xl p-8 border border-slate-200/60 card-hover flex flex-col justify-between";
+
+                card.innerHTML = `
+                    <div>
+                        <!-- Header -->
+                        <div class="flex items-start justify-between gap-4 mb-4">
+                            <div>
+                                <h3 class="text-xl font-bold text-slate-900 leading-tight mb-1">${escapeHtml(item.person)}</h3>
+                                <p class="text-sm text-slate-500 font-medium">${escapeHtml(item.role)}</p>
+                            </div>
+                            <div class="shrink-0">${sourceBadge}</div>
+                        </div>
+
+                        <!-- Unit -->
+                        <div class="inline-flex items-center gap-2 bg-slate-50 px-3 py-1.5 rounded-lg border border-slate-100 mb-6">
+                            <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                            <span class="text-xs font-semibold text-slate-700">${escapeHtml(item.unit)}</span>
+                        </div>
+
+                        <!-- AI Match Rationale (Glowing Highlight) -->
+                        <div class="relative bg-gradient-to-br from-red-50 to-orange-50 p-4 rounded-2xl border border-red-100 mb-6">
+                            <div class="absolute -top-2 -left-2 bg-swiss-red text-white p-1 rounded-full shadow-md">
+                                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                            </div>
+                            <p class="text-sm text-slate-800 font-medium leading-relaxed pl-2">
+                                ${escapeHtml(item.reason_for_match)}
+                            </p>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <!-- Expertise -->
+                            ${item.expertise.length > 0 ? `
+                            <div>
+                                <h4 class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">Expertise</h4>
+                                <div class="flex flex-wrap gap-1.5">
+                                    ${item.expertise.map(e => `<span class="bg-slate-100 text-slate-700 text-xs px-2 py-1 rounded border border-slate-200/60 font-medium">${escapeHtml(e)}</span>`).join('')}
+                                </div>
+                            </div>` : ''}
+
+                            <!-- Projects -->
+                            ${item.projects.length > 0 ? `
+                            <div>
+                                <h4 class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">Projects</h4>
+                                <ul class="text-xs text-slate-600 space-y-1 font-medium leading-tight">
+                                    ${item.projects.map(p => `<li class="flex items-start gap-1.5"><span class="text-slate-300 mt-0.5">•</span> <span>${escapeHtml(p)}</span></li>`).join('')}
+                                </ul>
+                            </div>` : ''}
+                        </div>
+                    </div>
+
+                    <!-- Footer Link -->
+                    <div class="pt-5 border-t border-slate-100 mt-2 flex justify-between items-center group/link cursor-pointer" onclick="window.open('${escapeHtml(item.source_url)}', '_blank')">
+                        <span class="text-slate-400 font-mono text-[10px] uppercase tracking-wider">Source Verification</span>
+                        <div class="inline-flex items-center gap-1 font-bold text-swiss-red group-hover/link:text-red-700 transition">
+                            <span class="text-xs">View Source</span>
+                            <svg class="w-4 h-4 transform group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function filterSource(type) {
+            ['all', 'unibe', 'artorg', 'dcb'].forEach(id => {
+                const btn = document.getElementById(`btn-${id}`);
+                if (id === type) {
+                    btn.className = "px-5 py-2 rounded-xl bg-white shadow-sm text-slate-900 font-bold text-sm transition";
+                } else {
+                    btn.className = "px-5 py-2 rounded-xl text-slate-600 hover:text-slate-900 font-medium text-sm transition";
+                }
+            });
+
+            if (type === 'all') {
+                renderCards(globalResults);
+            } else if (type === 'unibe') {
+                renderCards(globalResults.filter(r => !r.source_url.includes('artorg') && !r.source_url.includes('dcberne')));
+            } else if (type === 'artorg') {
+                renderCards(globalResults.filter(r => r.source_url.includes('artorg')));
+            } else if (type === 'dcb') {
+                renderCards(globalResults.filter(r => r.source_url.includes('dcberne')));
+            }
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+        }
+    </script>
+</body>
+</html>

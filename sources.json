@@ -1,0 +1,29 @@
+[
+  {
+    "institution_id": "unibe_medicine",
+    "institution_name": "UniBE Faculty of Medicine",
+    "seed_urls": [
+      "https://www.medizin.unibe.ch/about_us/faculty/index_eng.html",
+      "https://www.medizin.unibe.ch/research/research_units/index_eng.html",
+      "https://www.medizin.unibe.ch/about_us/dean_s_office/index_eng.html"
+    ]
+  },
+  {
+    "institution_id": "artorg",
+    "institution_name": "ARTORG Center for Biomedical Engineering Research",
+    "seed_urls": [
+      "https://www.artorg.unibe.ch/",
+      "https://www.artorg.unibe.ch/research/index_eng.html",
+      "https://www.artorg.unibe.ch/about_us/team/index_eng.html"
+    ]
+  },
+  {
+    "institution_id": "dcb",
+    "institution_name": "Diabetes Center Berne",
+    "seed_urls": [
+      "https://www.dcberne.com/en/team/",
+      "https://www.dcberne.com/en/projects/",
+      "https://www.dcberne.com/en/four-dcb-professorships-advance-research-in-diabetes-technology/"
+    ]
+  }
+]
